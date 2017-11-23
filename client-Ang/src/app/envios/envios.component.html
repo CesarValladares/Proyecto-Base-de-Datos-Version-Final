@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+
+<card title="Envios">
+  <div class="table-responsive">
+    <table class="table" id = "Envios-Tabla">
+      <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Sucursal Inicial</th>
+        <th>Sucursal Final</th>
+        <th>Paquete</th>
+        <th>Usuario</th>
+        <th>Empleado</th>
+        <th>Factura</th>
+        <th>Conductor</th>
+        <th>Transporte</th>
+        <th>Fecha</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let envio of envios">
+          <th scope="row">{{envio._id}}</th>
+          <td >{{envio.sucursal_ini}}</td>
+          <td>{{envio.sucursal_fin}}</td>
+          <td>{{envio.paquete}}</td>
+          <td>{{envio.usuario}}</td>
+          <td>{{envio.empleado}}</td>
+          <td>{{envio.factura}}</td>
+          <td>{{envio.conductor}}</td>
+          <td>{{envio.transporte}}</td>
+          <td>{{envio.fecha}}</td>
+          <input type="button" (click)="deleteEnvio(envio._id)" value="Delete" class = "btn btn-danger">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</card>
+<button (click)="exportTableToCSV('envios.csv')">Descargar</button>
+
+<div class="container">
+  <h3 class = "page-header">Nuevo Envío</h3>
+  <form (submit) = "addEnvio()">
+    <div class = "form-group">
+      <label>Sucursal de envío</label>
+      <input type="text"[(ngModel)] = "sucursal_ini" name = "sucursal_ini" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Sucursal destino</label>
+      <input type="text"[(ngModel)] = "sucursal_fin" name = "sucursal_fin" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Paquete</label>
+      <input type="text"[(ngModel)] = "paquete" name = "paquete" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Usuario</label>
+      <input type="text"[(ngModel)] = "usuario" name = "usuario" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Empleado</label>
+      <input type="text"[(ngModel)] = "empleado" name = "empleado" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Factura</label>
+      <input type="text"[(ngModel)] = "factura" name = "factura" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Conductor</label>
+      <input type="text"[(ngModel)] = "conductor" name = "conductor" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Transporte</label>
+      <input type="text"[(ngModel)] = "transporte" name = "transporte" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Fecha mm/dd/aaaa</label>
+      <input type="text"[(ngModel)] = "fecha" name = "fecha" class = "form-control">
+    </div>
+    <input type="submit" class="btn btn btn-success" value = "Add">
+  </form>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col-lg-6">
+      <card>
+        <canvas
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+      </card>
+    </div>
+    <div class="col-lg-6">
+      <card>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tr>
+              <th *ngFor="let label of barChartLabels">{{label}}</th>
+            </tr>
+            <tr *ngFor="let d of barChartData">
+              <td *ngFor="let label of barChartLabels; let j=index">{{d && d.data[j]}}</td>
+            </tr>
+          </table>
+        </div>
+      </card>
+  
+      <button md-raised-button color="accent" (click)="getEnvios()">Update</button>
+    </div>
+  </div>
+
+</html>

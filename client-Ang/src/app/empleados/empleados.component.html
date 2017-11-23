@@ -1,0 +1,51 @@
+
+<card title="Empleados">
+  <div class="table-responsive">
+    <table class="table" id = "Empleados-Tabla">
+      <thead class="thead-inverse">
+      <tr>
+        <th>id</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Usuario</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleados">
+          <th scope="row">{{empleado._id}}</th>
+          <td>{{empleado.nombre}}</td>
+          <td>{{empleado.tipo}}</td>
+          <td>{{empleado.username}}</td>
+          <input type="button" (click)="deletEmpleado(empleado._id)" value="Delete" class = "btn btn-danger">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</card>
+<button (click)="exportTableToCSV('empleados.csv')">Download</button>
+  
+  
+
+<div class="container">
+  <h3 class = "page-header">Registrar Empleado</h3>
+  <form (submit) = "addEmpleado()">
+    <div class = "form-group">
+      <label>Nombre</label>
+      <input type="text"[(ngModel)] = "nombre" name = "nombre" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Tipo</label>
+      <input type="text"[(ngModel)] = "tipo" name = "tipo" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Username</label>
+      <input type="text"[(ngModel)] = "username" name = "username" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Password</label>
+      <input type="text"[(ngModel)] = "password" name = "password" class = "form-control">
+    </div>
+    <input type="submit" class="btn btn btn-success" value = "Add">
+  </form>
+</div>
+<hr>

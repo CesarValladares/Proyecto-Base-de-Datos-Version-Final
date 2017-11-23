@@ -1,0 +1,36 @@
+  
+<card title="conductores">
+  <div class="table-responsive">
+    <table class="table" id = "Empleados-Tabla">
+      <thead class="thead-inverse">
+      <tr>
+        <th>id</th>
+        <th>Nombre Completo</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let conductor of conductores">
+          <th scope="row">{{conductor._id}}</th>
+          <td>{{conductor.nombre}}</td>
+          <input type="button" (click)="deletConductor(conductor._id)" value="Delete" class = "btn btn-danger">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</card>
+<button (click)="exportTableToCSV('conductores.csv')">Download</button>
+  
+<div class="container">
+  <h3 class = "page-header">Registrar conductor</h3>
+  <form (submit) = "addConductor()">
+    <div class = "form-group">
+      <label>Nombre Completo</label>
+      <input type="text"[(ngModel)] = "nombre" name = "nombre" class = "form-control">
+    </div>
+    <input type="submit" class="btn btn btn-success" value = "Add">
+  </form>
+</div>
+<hr>
+
+<script type="text/javascript" src="js/jquery-2.1.3.js"></script>
+<script type="text/javascript" src="js/jspdf.js"></script>

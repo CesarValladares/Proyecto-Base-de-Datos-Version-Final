@@ -1,0 +1,45 @@
+
+<card title="Paquetes">
+  <div class="table-responsive">
+    <table class="table" id = "Paquetes-Tabla">
+      <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Objeto</th>
+        <th>Peso</th>
+        <th>tamaño</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paquete of paquetes">
+          <th scope="row">{{paquete._id}}</th>
+          <td>{{paquete.objeto}}</td>
+          <td>{{paquete.peso}}</td>
+          <td>{{paquete.size}}</td>
+          <input type="button" (click)="deletePaquete(paquete._id)" value="Delete" class = "btn btn-danger">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</card>
+<button (click)="exportTableToCSV('paquetes.csv')">Download</button>
+<div class="container">
+  <h3 class = "page-header">Registrar paquete</h3>
+  <form (submit) = "addPaquete()">
+    <div class = "form-group">
+      <label>Objeto</label>
+      <input type="text"[(ngModel)] = "objeto" name = "objeto" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Peso</label>
+      <input type="text"[(ngModel)] = "peso" name = "sucursal_fin" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Tamaño</label>
+      <input type="text"[(ngModel)] = "size" name = "size" class = "form-control">
+    </div>
+    <input type="submit" class="btn btn btn-success" value = "Add">
+  </form>
+</div>
+<hr>
+  

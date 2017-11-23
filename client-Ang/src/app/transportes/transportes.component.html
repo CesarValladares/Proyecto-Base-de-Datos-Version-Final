@@ -1,0 +1,52 @@
+
+<card title="Tansportes">
+  <div class="table-responsive">
+    <table class="table" id = "Transportes-Tabla">
+      <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Tipo</th>
+        <th>Placa</th>
+        <th>Disponibilidad</th>
+        <th>Uibicación</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transporte of transportes">
+          <th scope="row">{{transporte._id}}</th>
+          <td>{{transporte.tipo}}</td>
+          <td>{{transporte.placa}}</td>
+          <td>{{transporte.disponibilidad}}</td>
+          <td>{{transporte.ubicacion}}</td>
+          <input type="button" (click)="deleteTransporte(transporte._id)" value="Delete" class = "btn btn-danger">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</card>
+
+<button (click)="exportTableToCSV('transportes.csv')">Download</button>
+
+<div class="container">
+  <h3 class = "page-header">Registrar Transporte</h3>
+  <form (submit) = "addTransporte()">
+    <div class = "form-group">
+      <label>Tipo</label>
+      <input type="text"[(ngModel)] = "tipo" name = "tipo" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Placa</label>
+      <input type="text"[(ngModel)] = "placa" name = "placa" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Disponibilidad</label>
+      <input type="boolean"[(ngModel)] = "disponibilidad" name = "disponibilidad" class = "form-control">
+    </div>
+    <div class = "form-group">
+      <label>Ubicacion</label>
+      <input type="text"[(ngModel)] = "ubicacion" name = "ubicacion" class = "form-control">
+    </div>
+    <input type="submit" class="btn btn btn-success" value = "Add">
+  </form>
+</div>
+<hr>
